@@ -27,10 +27,11 @@ The project implements the SymNMF algorithm based on the paper by Kuang, Ding, a
 1. Clone the repository
 2. Build the C extension:
 ```bash
-python3 setup.py build_ext --inplace
+python3 python/setup.py build_ext --inplace
 ```
 3. Build the C executable:
 ```bash
+cd C
 make
 ```
 
@@ -38,10 +39,10 @@ make
 
 The project provides several interfaces for different operations:
 
-### Python Interface
+### Python Interface:
 
 ```bash
-python3 symnmf.py k goal input_file
+python3 python/symnmf.py k goal input_file
 ```
 
 Parameters:
@@ -61,7 +62,7 @@ python3 symnmf.py 2 symnmf input_1.txt
 ### C Interface
 
 ```bash
-./symnmf goal input_file
+./C/symnmf goal input_file
 ```
 
 Parameters:
@@ -102,14 +103,17 @@ Example:
 
 ## Project Structure
 
-- `symnmf.py`: Python interface and main program
-- `symnmf.c`: C implementation of core algorithms
-- `symnmf.h`: C header file with function declarations
-- `symnmfmodule.c`: Python C API wrapper
-- `analysis.py`: Comparison tool for SymNMF vs K-means
-- `setup.py`: Build configuration for C extension
-- `Makefile`: Build script for C components
-- `kmeans.py`: K-means implementation for comparison
+- `C/`: Contains the C implementation and the build system for the core algorithms.
+  - `symnmf.c`: Core C implementation of the SymNMF algorithm.
+  - `symnmf.h`: Header file for C implementation.
+  - `symnmfmodule.c`: Python C API wrapper.
+  - `Makefile`: Build script for C components.
+
+- `python/`: Contains the Python interface, analysis tool, and K-means comparison implementation.
+  - `symnmf.py`: Python interface to interact with the SymNMF algorithm.
+  - `analysis.py`: Comparison tool for SymNMF vs K-means.
+  - `kmeans.py`: K-means implementation for comparison.
+  - `setup.py`: Build configuration for integrating C extension into Python.
 
 ## Implementation Details
 
